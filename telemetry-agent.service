@@ -1,0 +1,24 @@
+[Unit]
+Description=REIMAGINED Telemetry Agent
+After=network.target signalk.service
+Wants=signalk.service
+
+[Service]
+Type=simple
+User=brad
+Group=brad
+WorkingDirectory=/home/brad/Code/reimagined-telemetry
+Environment="PATH=/home/brad/Code/reimagined-telemetry/venv/bin"
+ExecStart=/home/brad/Code/reimagined-telemetry/venv/bin/python telemetry_agent.py
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=telemetry-agent
+
+[Install]
+WantedBy=multi-user.target
