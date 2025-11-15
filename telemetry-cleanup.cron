@@ -1,0 +1,3 @@
+# Tiered retention cleanup for GPS telemetry
+# Runs daily at 3 AM local time
+0 3 * * * cd /home/brad/Code/reimagined-telemetry && /home/brad/Code/reimagined-telemetry/venv/bin/python cleanup_telemetry.py >> /home/brad/Code/reimagined-telemetry/telemetry_cleanup.log 2>&1

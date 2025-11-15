@@ -69,10 +69,22 @@ class SignalKClient:
                 if course_data and "value" in course_data:
                     course = course_data["value"]  # radians
 
+            # Round coordinates to 7 decimal places (~1cm precision)
+            latitude = position.get("latitude")
+            longitude = position.get("longitude")
+            altitude = position.get("altitude")
+
+            if latitude is not None:
+                latitude = round(float(latitude), 7)
+            if longitude is not None:
+                longitude = round(float(longitude), 7)
+            if altitude is not None:
+                altitude = round(float(altitude), 2)  # meters, 2 decimals sufficient
+
             return {
-                "latitude": position.get("latitude"),
-                "longitude": position.get("longitude"),
-                "altitude": position.get("altitude"),
+                "latitude": latitude,
+                "longitude": longitude,
+                "altitude": altitude,
                 "speed_over_ground": speed,
                 "course_over_ground": course,
                 "timestamp": timestamp,
