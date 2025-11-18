@@ -1,10 +1,11 @@
 """Configuration management for the telemetry agent."""
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from shared .env file in parent directory
+load_dotenv(Path(__file__).parent.parent / '.env')
 
 
 @dataclass
